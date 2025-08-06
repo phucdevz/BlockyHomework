@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}BlockyHomework{% endblock %}</title>
+    <title>{% block title %}BlockyHomework - Blockchain System{% endblock %}</title>
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <h1>BlockyHomework</h1>
-            <ul>
-                <li><a href="/">Dashboard</a></li>
-                <li><a href="/transactions">Transactions</a></li>
-                <li><a href="/mining">Mining</a></li>
-                <li><a href="/network">Network</a></li>
-                <li><a href="/simulation">Simulation</a></li>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">B</div>
+                <span>BlockyHomework</span>
+            </div>
+            
+            <ul class="navbar-nav">
+                <li><a href="/" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+                <li><a href="/transactions" class="nav-link {% if request.endpoint == 'transactions' %}active{% endif %}">Transactions</a></li>
+                <li><a href="/mining" class="nav-link {% if request.endpoint == 'mining' %}active{% endif %}">Mining</a></li>
+                <li><a href="/network" class="nav-link {% if request.endpoint == 'network' %}active{% endif %}">Network</a></li>
+                <li><a href="/simulation" class="nav-link {% if request.endpoint == 'simulation' %}active{% endif %}">Simulation</a></li>
             </ul>
         </div>
     </nav>
     
-    <main>
+    <!-- Main Content -->
+    <main class="container">
         {% block content %}{% endblock %}
     </main>
     
+    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+    <!-- Page-specific scripts -->
+    {% block scripts %}{% endblock %}
 </body>
 </html> 

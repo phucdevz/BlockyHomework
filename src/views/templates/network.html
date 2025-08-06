@@ -3,61 +3,186 @@
 {% block title %}Network - BlockyHomework{% endblock %}
 
 {% block content %}
-<div class="network">
-    <h2>Network Status</h2>
-    
-    <div class="network-overview">
-        <h3>Network Overview</h3>
-        <div class="network-stats">
-            <div class="stat-item">
-                <span class="stat-label">Connected Nodes:</span>
-                <span class="stat-value">{{ connected_nodes_count }}</span>
+<section class="section">
+    <div class="fade-in">
+        <h1>Network Status</h1>
+        <p class="text-muted">Monitor P2P network and node connections</p>
+    </div>
+
+    <!-- Network Overview -->
+    <div class="grid grid-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Connected Nodes</h3>
+                <span class="card-subtitle">Active network connections</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-label">Network Status:</span>
-                <span class="stat-value {{ network_status }}">{{ network_status|title }}</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Sync Status:</span>
-                <span class="stat-value {{ sync_status }}">{{ sync_status|title }}</span>
+            <div class="card-content">
+                <div class="stat-number" id="connected-nodes">0</div>
             </div>
         </div>
-    </div>
-    
-    <div class="node-list">
-        <h3>Connected Nodes</h3>
-        <div class="nodes-grid">
-            {% for node in connected_nodes %}
-            <div class="node-item">
-                <div class="node-info">
-                    <span class="node-address">{{ node.address }}</span>
-                    <span class="node-status {{ node.status }}">{{ node.status }}</span>
-                </div>
-                <div class="node-details">
-                    <span class="node-chain-length">Chain: {{ node.chain_length }}</span>
-                    <span class="node-last-seen">Last seen: {{ node.last_seen }}</span>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Network Status</h3>
+                <span class="card-subtitle">Current network state</span>
+            </div>
+            <div class="card-content">
+                <div class="network-status-indicator">
+                    <span class="status-dot" id="network-status-dot"></span>
+                    <span class="status-text" id="network-status-text">Disconnected</span>
                 </div>
             </div>
-            {% endfor %}
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Sync Status</h3>
+                <span class="card-subtitle">Blockchain synchronization</span>
+            </div>
+            <div class="card-content">
+                <div class="sync-progress">
+                    <div class="progress">
+                        <div class="progress-bar" id="sync-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="sync-progress-text">0%</div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Network Visualization -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Network Topology</h3>
+            <span class="card-subtitle">Visual representation of connected nodes</span>
+        </div>
+        <div class="card-content">
+            <div class="network-canvas" id="network-canvas">
+                <div class="canvas-placeholder">
+                    <p>Network visualization will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connected Nodes -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Connected Nodes</h3>
+            <span class="card-subtitle">Detailed information about network peers</span>
+        </div>
+        <div class="card-content">
+            <div id="network-nodes">
+                <p class="no-data">Loading network nodes...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Network Actions</h3>
+            <span class="card-subtitle">Manage network connections</span>
+        </div>
+        <div class="card-content">
+            <div class="network-actions">
+                <button class="btn btn-primary" onclick="refreshNetwork()" id="refresh-network">
+                    <span class="btn-icon">🔄</span>
+                    Refresh Network
+                </button>
+                <button class="btn btn-secondary" onclick="discoverNodes()" id="discover-nodes">
+                    <span class="btn-icon">🔍</span>
+                    Discover Nodes
+                </button>
+                <button class="btn btn-success" onclick="syncChain()" id="sync-chain">
+                    <span class="btn-icon">📡</span>
+                    Sync Blockchain
+                </button>
+                <button class="btn btn-warning" onclick="broadcastTransaction()" id="broadcast-tx">
+                    <span class="btn-icon">📢</span>
+                    Broadcast Transaction
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Statistics -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Network Statistics</h3>
+            <span class="card-subtitle">Performance and connectivity metrics</span>
+        </div>
+        <div class="card-content">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Nodes</span>
+                    <span class="stat-value" id="total-nodes">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Active Connections</span>
+                    <span class="stat-value" id="active-connections">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Network Latency</span>
+                    <span class="stat-value" id="network-latency">0ms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Data Transferred</span>
+                    <span class="stat-value" id="data-transferred">0 KB</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Configuration -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Network Configuration</h3>
+            <span class="card-subtitle">Adjust network settings</span>
+        </div>
+        <div class="card-content">
+            <form class="network-config-form">
+                <div class="form-group">
+                    <label for="max-connections" class="form-label">Max Connections</label>
+                    <input type="number" id="max-connections" class="form-input" 
+                           value="10" min="1" max="50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="connection-timeout" class="form-label">Connection Timeout (ms)</label>
+                    <input type="number" id="connection-timeout" class="form-input" 
+                           value="5000" min="1000" max="30000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="auto-discovery" class="form-label">Auto Discovery</label>
+                    <select id="auto-discovery" class="form-select">
+                        <option value="true">Enabled</option>
+                        <option value="false">Disabled</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Save Configuration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Network-specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Network page loaded');
     
-    <div class="network-actions">
-        <h3>Network Actions</h3>
-        <div class="action-buttons">
-            <button onclick="discoverNodes()">Discover Nodes</button>
-            <button onclick="syncWithNetwork()">Sync with Network</button>
-            <button onclick="broadcastTransaction()">Broadcast Transaction</button>
-            <button onclick="refreshNetwork()">Refresh Network</button>
-        </div>
-    </div>
-    
-    <div class="network-topology">
-        <h3>Network Topology</h3>
-        <div class="topology-visualization">
-            <!-- Network topology visualization will be rendered here -->
-            <canvas id="network-canvas" width="800" height="400"></canvas>
-        </div>
-    </div>
-</div>
+    // Initialize network-specific functionality
+    if (window.networkManager) {
+        window.networkManager.loadNetworkData();
+    }
+});
+</script>
 {% endblock %} 

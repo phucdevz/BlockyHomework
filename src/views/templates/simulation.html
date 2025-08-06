@@ -1,107 +1,261 @@
 {% extends "base.html" %}
 
-{% block title %}Simulation - BlockyHomework{% endblock %}
+{% block title %}Attack Simulation - BlockyHomework{% endblock %}
 
 {% block content %}
-<div class="simulation">
-    <h2>Attack Simulation</h2>
-    
-    <div class="simulation-controls">
-        <h3>Simulation Controls</h3>
-        <div class="control-panel">
-            <div class="form-group">
-                <label for="attack-type">Attack Type:</label>
-                <select id="attack-type">
-                    <option value="51-percent">51% Attack</option>
-                    <option value="double-spend">Double Spend</option>
-                    <option value="fork-attack">Fork Attack</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="attack-power">Attack Power (%):</label>
-                <input type="range" id="attack-power" min="1" max="100" value="51">
-                <span id="power-display">51%</span>
-            </div>
-            <div class="form-group">
-                <label for="attack-duration">Duration (seconds):</label>
-                <input type="number" id="attack-duration" min="10" max="300" value="60">
-            </div>
-            <div class="control-buttons">
-                <button onclick="startSimulation()" class="btn-start">Start Simulation</button>
-                <button onclick="stopSimulation()" class="btn-stop">Stop Simulation</button>
-                <button onclick="resetSimulation()" class="btn-reset">Reset</button>
-            </div>
-        </div>
+<section class="section">
+    <div class="fade-in">
+        <h1>Attack Simulation</h1>
+        <p class="text-muted">Simulate 51% attacks and study blockchain security</p>
     </div>
-    
-    <div class="simulation-status">
-        <h3>Simulation Status</h3>
-        <div class="status-display">
-            <div class="status-item">
-                <span class="label">Status:</span>
-                <span class="value {{ simulation_status }}">{{ simulation_status|title }}</span>
-            </div>
-            <div class="status-item">
-                <span class="label">Progress:</span>
-                <span class="value">{{ simulation_progress }}%</span>
-            </div>
-            <div class="status-item">
-                <span class="label">Time Elapsed:</span>
-                <span class="value">{{ time_elapsed }}s</span>
-            </div>
+
+    <!-- Simulation Controls -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Attack Configuration</h3>
+            <span class="card-subtitle">Configure attack parameters</span>
         </div>
-    </div>
-    
-    <div class="simulation-visualization">
-        <h3>Attack Visualization</h3>
-        <div class="visualization-container">
-            <div class="chain-comparison">
-                <div class="legitimate-chain">
-                    <h4>Legitimate Chain</h4>
-                    <div class="chain-blocks">
-                        {% for block in legitimate_chain %}
-                        <div class="block legitimate">
-                            <span class="block-index">#{{ block.index }}</span>
-                            <span class="block-hash">{{ block.hash[:6] }}...</span>
-                        </div>
-                        {% endfor %}
+        <div class="card-content">
+            <form class="simulation-config-form">
+                <div class="control-group">
+                    <div class="form-group">
+                        <label for="attack-type" class="form-label">Attack Type</label>
+                        <select id="attack-type" class="form-select">
+                            <option value="51-percent">51% Attack</option>
+                            <option value="double-spend">Double Spend</option>
+                            <option value="selfish-mining">Selfish Mining</option>
+                            <option value="eclipse">Eclipse Attack</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attack-power" class="form-label">Attack Power (%)</label>
+                        <input type="range" id="attack-power" class="form-input" 
+                               min="1" max="100" value="51" step="1">
+                        <span class="range-value" id="attack-power-value">51%</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="attack-duration" class="form-label">Duration (minutes)</label>
+                        <input type="number" id="attack-duration" class="form-input" 
+                               value="10" min="1" max="60">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="network-size" class="form-label">Network Size</label>
+                        <input type="number" id="network-size" class="form-input" 
+                               value="100" min="10" max="1000">
                     </div>
                 </div>
-                <div class="attack-chain">
-                    <h4>Attack Chain</h4>
-                    <div class="chain-blocks">
-                        {% for block in attack_chain %}
-                        <div class="block attack">
-                            <span class="block-index">#{{ block.index }}</span>
-                            <span class="block-hash">{{ block.hash[:6] }}...</span>
+                
+                <div class="simulation-actions">
+                    <button type="button" class="btn btn-danger" onclick="startSimulation()" id="start-simulation">
+                        <span class="btn-icon">⚔️</span>
+                        Start Attack
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="stopSimulation()" id="stop-simulation" disabled>
+                        <span class="btn-icon">⏹️</span>
+                        Stop Attack
+                    </button>
+                    <button type="button" class="btn btn-warning" onclick="resetSimulation()" id="reset-simulation">
+                        <span class="btn-icon">🔄</span>
+                        Reset Simulation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Simulation Status -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Simulation Status</h3>
+            <span class="card-subtitle">Current attack progress</span>
+        </div>
+        <div class="card-content">
+            <div id="simulation-status">
+                <div class="simulation-indicator">
+                    <div class="indicator-dot inactive"></div>
+                    <div class="indicator-text">Simulation Inactive</div>
+                </div>
+                <div id="simulation-progress" style="display: none;">
+                    <div class="progress-container">
+                        <div class="progress">
+                            <div class="progress-bar" id="attack-progress-bar" style="width: 0%"></div>
                         </div>
-                        {% endfor %}
+                        <div class="progress-text" id="attack-progress-text">0%</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="simulation-results">
-        <h3>Simulation Results</h3>
-        <div class="results-summary">
-            <div class="result-item">
-                <span class="label">Attack Success:</span>
-                <span class="value {{ attack_success }}">{{ attack_success|title }}</span>
+
+    <!-- Chain Comparison -->
+    <div class="grid grid-2">
+        <!-- Legitimate Chain -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Legitimate Chain</h3>
+                <span class="card-subtitle">Original blockchain</span>
             </div>
-            <div class="result-item">
-                <span class="label">Blocks Mined (Attack):</span>
-                <span class="value">{{ attack_blocks_mined }}</span>
+            <div class="card-content">
+                <div class="chain-info">
+                    <div class="chain-length">
+                        <strong>Length:</strong> <span id="legitimate-length">0</span>
+                    </div>
+                    <div class="chain-difficulty">
+                        <strong>Difficulty:</strong> <span id="legitimate-difficulty">0</span>
+                    </div>
+                    <div class="chain-blocks" id="legitimate-blocks">
+                        <p class="no-data">No blocks</p>
+                    </div>
+                </div>
             </div>
-            <div class="result-item">
-                <span class="label">Blocks Mined (Legitimate):</span>
-                <span class="value">{{ legitimate_blocks_mined }}</span>
+        </div>
+
+        <!-- Attack Chain -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Attack Chain</h3>
+                <span class="card-subtitle">Malicious fork</span>
             </div>
-            <div class="result-item">
-                <span class="label">Chain Replaced:</span>
-                <span class="value {{ chain_replaced }}">{{ chain_replaced|title }}</span>
+            <div class="card-content">
+                <div class="chain-info">
+                    <div class="chain-length">
+                        <strong>Length:</strong> <span id="attack-length">0</span>
+                    </div>
+                    <div class="chain-difficulty">
+                        <strong>Difficulty:</strong> <span id="attack-difficulty">0</span>
+                    </div>
+                    <div class="chain-blocks" id="attack-blocks">
+                        <p class="no-data">No blocks</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Attack Visualization -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Attack Visualization</h3>
+            <span class="card-subtitle">Real-time attack simulation</span>
+        </div>
+        <div class="card-content">
+            <div class="attack-visualization" id="attack-visualization">
+                <div class="visualization-placeholder">
+                    <p>Attack visualization will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simulation Results -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Simulation Results</h3>
+            <span class="card-subtitle">Attack outcome analysis</span>
+        </div>
+        <div class="card-content">
+            <div id="simulation-results">
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-label">Attack Success Rate</span>
+                        <span class="result-value" id="success-rate">0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Blocks Stolen</span>
+                        <span class="result-value" id="blocks-stolen">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Network Impact</span>
+                        <span class="result-value" id="network-impact">Low</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Consensus Maintained</span>
+                        <span class="result-value" id="consensus-maintained">Yes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attack Statistics -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Attack Statistics</h3>
+            <span class="card-subtitle">Detailed attack metrics</span>
+        </div>
+        <div class="card-content">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Attack Duration</span>
+                    <span class="stat-value" id="attack-duration-value">0 minutes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Hash Rate</span>
+                    <span class="stat-value" id="attack-hashrate">0 H/s</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Blocks Created</span>
+                    <span class="stat-value" id="blocks-created">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Energy Consumed</span>
+                    <span class="stat-value" id="energy-consumed">0 kWh</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Recommendations -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Security Recommendations</h3>
+            <span class="card-subtitle">How to protect against attacks</span>
+        </div>
+        <div class="card-content">
+            <div class="security-recommendations">
+                <div class="recommendation">
+                    <h4>🔒 Increase Network Hash Rate</h4>
+                    <p>More miners make 51% attacks more expensive and less likely to succeed.</p>
+                </div>
+                <div class="recommendation">
+                    <h4>⏰ Implement Checkpoints</h4>
+                    <p>Use trusted checkpoints to prevent deep chain reorganizations.</p>
+                </div>
+                <div class="recommendation">
+                    <h4>🔄 Improve Consensus Rules</h4>
+                    <p>Implement better fork resolution and chain selection algorithms.</p>
+                </div>
+                <div class="recommendation">
+                    <h4>📊 Enhanced Monitoring</h4>
+                    <p>Deploy network monitoring to detect unusual mining patterns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Simulation-specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Simulation page loaded');
+    
+    // Initialize simulation-specific functionality
+    if (window.simulationManager) {
+        // Setup range input
+        const attackPower = document.getElementById('attack-power');
+        const attackPowerValue = document.getElementById('attack-power-value');
+        
+        if (attackPower && attackPowerValue) {
+            attackPower.addEventListener('input', function() {
+                attackPowerValue.textContent = this.value + '%';
+            });
+        }
+    }
+});
+</script>
 {% endblock %} 

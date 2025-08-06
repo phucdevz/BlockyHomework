@@ -1,0 +1,395 @@
+# BLOCKYHOMEWORK - TEAM ASSIGNMENTS
+
+## 👥 TEAM MEMBERS
+
+### Backend Developer
+- **Name:** Nguyễn Trường Phục + Nguyễn Phạm Thiên Phước
+- **Role:** Core blockchain logic, data models, cryptographic functions
+- **Focus:** Model layer, blockchain engine, security
+
+### Frontend Developer
+- **Name:** [Tên thành viên]
+- **Role:** User interface, web templates, client-side functionality
+- **Focus:** View layer, UI/UX, responsive design
+
+### Networking Developer
+- **Name:** [Tên thành viên]
+- **Role:** P2P networking, consensus, node communication
+- **Focus:** Network layer, distributed systems, synchronization
+
+### ViewModel Developer
+- **Name:** [Tên thành viên]
+- **Role:** Business logic, data binding, state management
+- **Focus:** ViewModel layer, MVVM architecture, integration
+
+---
+
+## 📋 WEEK 1: CORE DATA MODELS ✅ COMPLETED
+
+### Backend Developer Tasks ✅
+- [x] **Block Class Implementation**
+  - [x] Block structure with index, timestamp, transactions, proof, previous_hash
+  - [x] calculate_hash() method using SHA-256
+  - [x] mine_proof_of_work() method with difficulty adjustment
+  - [x] Validation logic for block integrity
+
+- [x] **Transaction Class Implementation**
+  - [x] Transaction structure with sender, recipient, amount, signature
+  - [x] sign_transaction() using ECDSA
+  - [x] verify_signature() method
+  - [x] Transaction validation logic
+
+- [x] **Wallet Class Implementation**
+  - [x] Key pair generation using ECDSA
+  - [x] Address generation from public key
+  - [x] Balance calculation methods
+  - [x] Transaction creation methods
+
+- [x] **Blockchain Class Implementation**
+  - [x] Genesis block creation
+  - [x] Add transaction to mempool
+  - [x] Mine new block with PoW
+  - [x] Chain validation logic
+
+- [x] **Mempool Class Implementation**
+  - [x] Transaction pool management
+  - [x] Fee calculation
+  - [x] Transaction prioritization
+  - [x] Add/remove transaction methods
+
+### Frontend Developer Tasks ✅
+- [x] **HTML Templates Creation**
+  - [x] base.html template
+  - [x] dashboard.html template
+  - [x] transactions.html template
+  - [x] mining.html template
+  - [x] network.html template
+  - [x] simulation.html template
+
+- [x] **CSS Styling**
+  - [x] Main stylesheet (style.css)
+  - [x] Responsive design
+  - [x] Modern UI components
+  - [x] Interactive elements styling
+
+- [x] **JavaScript Functionality**
+  - [x] Main app.js file
+  - [x] API call wrappers
+  - [x] UI update functions
+  - [x] Event listeners
+
+### Networking Developer Tasks ✅
+- [x] **File Structure Setup**
+  - [x] networking/__init__.py
+  - [x] networking/server.py placeholder
+  - [x] networking/client.py placeholder
+  - [x] networking/p2p_manager.py placeholder
+  - [x] networking/consensus.py placeholder
+
+### ViewModel Developer Tasks ✅
+- [x] **File Structure Setup**
+  - [x] viewmodels/__init__.py
+  - [x] viewmodels/node_viewmodel.py placeholder
+  - [x] viewmodels/blockchain_viewmodel.py placeholder
+  - [x] viewmodels/wallet_viewmodel.py placeholder
+
+---
+
+## 📋 WEEK 2: VIEWMODEL & LOGIC NODE 🔄 IN PROGRESS
+
+### Backend Developer Tasks
+- [ ] **Support ViewModel Integration**
+  - [ ] Provide Model layer interfaces for ViewModels
+  - [ ] Ensure proper data serialization methods
+  - [ ] Support state management requirements
+  - [ ] Assist with integration testing
+
+### Frontend Developer Tasks
+- [ ] **Template Enhancement**
+  - [ ] Update templates to work with ViewModels
+  - [ ] Implement data binding in templates
+  - [ ] Add dynamic content loading
+  - [ ] Test template integration
+
+### Networking Developer Tasks
+- [ ] **Network Layer Preparation**
+  - [ ] Study P2P networking requirements
+  - [ ] Research consensus mechanisms
+  - [ ] Plan node communication protocols
+  - [ ] Prepare for Week 3 implementation
+
+### ViewModel Developer Tasks 🔄
+- [ ] **NodeViewModel Implementation**
+  - [ ] Create NodeViewModel class with basic structure
+  - [ ] Implement state management properties
+  - [ ] Set up data binding with Model layer
+  - [ ] Create basic command pattern structure
+  - [ ] Implement create_transaction(recipient, amount) method
+  - [ ] Implement mine_block() method
+  - [ ] Implement get_wallet_balance() method
+  - [ ] Implement get_chain_display() method
+
+- [ ] **BlockchainViewModel Implementation**
+  - [ ] Implement chain display formatting
+  - [ ] Implement transaction list management
+  - [ ] Implement mining status tracking
+  - [ ] Implement format_chain_for_ui() method
+
+- [ ] **WalletViewModel Implementation**
+  - [ ] Implement wallet balance display formatting
+  - [ ] Implement transaction history management
+  - [ ] Implement address display formatting
+  - [ ] Implement format_balance_for_display() method
+
+---
+
+## 📋 WEEK 3: NETWORKING & CONSENSUS
+
+### Backend Developer Tasks
+- [ ] **Support Network Integration**
+  - [ ] Provide blockchain state for network sync
+  - [ ] Support consensus mechanism integration
+  - [ ] Assist with network testing
+  - [ ] Ensure data consistency across nodes
+
+### Frontend Developer Tasks
+- [ ] **Network UI Components**
+  - [ ] Create network status display
+  - [ ] Implement node list visualization
+  - [ ] Add network topology display
+  - [ ] Create network monitoring interface
+
+### Networking Developer Tasks 🔄
+- [ ] **BlockchainServer Implementation**
+  - [ ] Set up Flask/FastAPI server
+  - [ ] Implement basic API endpoints
+  - [ ] Set up request/response handling
+  - [ ] Configure error handling middleware
+
+- [ ] **BlockchainClient Implementation**
+  - [ ] Implement HTTP client for node communication
+  - [ ] Implement request retry mechanisms
+  - [ ] Implement connection management
+  - [ ] Implement node discovery methods
+
+- [ ] **P2PManager Implementation**
+  - [ ] Implement node discovery mechanism
+  - [ ] Implement peer-to-peer communication
+  - [ ] Implement network topology management
+  - [ ] Implement broadcasting system
+
+- [ ] **ConsensusManager Implementation**
+  - [ ] Implement longest chain rule
+  - [ ] Implement fork resolution
+  - [ ] Implement chain replacement logic
+  - [ ] Implement network synchronization
+
+### ViewModel Developer Tasks
+- [ ] **Network ViewModel Integration**
+  - [ ] Update ViewModels to work with network layer
+  - [ ] Implement network state management
+  - [ ] Add network synchronization methods
+  - [ ] Test network integration
+
+---
+
+## 📋 WEEK 4: VIEW LAYER
+
+### Backend Developer Tasks
+- [ ] **API Support**
+  - [ ] Provide Model layer APIs for routes
+  - [ ] Support transaction creation APIs
+  - [ ] Support mining APIs
+  - [ ] Support chain query APIs
+
+### Frontend Developer Tasks 🔄
+- [ ] **Flask Routes Implementation**
+  - [ ] Implement GET / (dashboard) route
+  - [ ] Implement GET /transactions route
+  - [ ] Implement GET /mining route
+  - [ ] Implement GET /network route
+  - [ ] Implement GET /simulation route
+
+- [ ] **API Endpoints**
+  - [ ] Implement POST /api/transactions/new
+  - [ ] Implement GET /api/chain
+  - [ ] Implement POST /api/mine
+  - [ ] Implement GET /api/wallet/balance/{address}
+
+- [ ] **Template Integration**
+  - [ ] Connect HTML templates with ViewModels
+  - [ ] Implement data binding in templates
+  - [ ] Test template rendering
+  - [ ] Fix template integration issues
+
+- [ ] **Static Files Integration**
+  - [ ] Connect CSS with templates
+  - [ ] Connect JavaScript with ViewModels
+  - [ ] Test static file loading
+  - [ ] Optimize static file delivery
+
+### Networking Developer Tasks
+- [ ] **Network API Support**
+  - [ ] Provide network status APIs
+  - [ ] Support node discovery APIs
+  - [ ] Support consensus APIs
+  - [ ] Assist with network UI integration
+
+### ViewModel Developer Tasks
+- [ ] **UI Integration Support**
+  - [ ] Ensure ViewModels work with routes
+  - [ ] Support template data binding
+  - [ ] Assist with UI testing
+  - [ ] Fix integration issues
+
+---
+
+## 📋 WEEK 5: ADVANCED FEATURES
+
+### Backend Developer Tasks
+- [ ] **Attack Simulation Support**
+  - [ ] Provide blockchain state for attack simulation
+  - [ ] Support fork creation mechanisms
+  - [ ] Assist with attack metrics
+  - [ ] Ensure simulation accuracy
+
+### Frontend Developer Tasks
+- [ ] **Advanced UI Features**
+  - [ ] Implement attack simulation interface
+  - [ ] Create network topology visualization
+  - [ ] Add real-time updates
+  - [ ] Implement advanced visualizations
+
+### Networking Developer Tasks
+- [ ] **Advanced Network Features**
+  - [ ] Implement automatic node discovery
+  - [ ] Implement network topology visualization
+  - [ ] Implement real-time node status
+  - [ ] Test network improvements
+
+### ViewModel Developer Tasks
+- [ ] **Advanced ViewModel Features**
+  - [ ] Implement attack simulation ViewModels
+  - [ ] Add network visualization ViewModels
+  - [ ] Support advanced UI features
+  - [ ] Test advanced functionality
+
+---
+
+## 📋 WEEK 6: TESTING & FINALIZATION
+
+### Backend Developer Tasks
+- [ ] **Model Layer Testing**
+  - [ ] Write tests for Block class
+  - [ ] Write tests for Transaction class
+  - [ ] Write tests for Wallet class
+  - [ ] Write tests for Blockchain class
+
+### Frontend Developer Tasks
+- [ ] **UI Testing**
+  - [ ] Test all UI functionality
+  - [ ] Test responsive design
+  - [ ] Fix UI bugs and issues
+  - [ ] Optimize user experience
+
+### Networking Developer Tasks
+- [ ] **Network Layer Testing**
+  - [ ] Write tests for BlockchainServer
+  - [ ] Write tests for BlockchainClient
+  - [ ] Write tests for P2PManager
+  - [ ] Write tests for ConsensusManager
+
+### ViewModel Developer Tasks
+- [ ] **ViewModel Layer Testing**
+  - [ ] Write tests for NodeViewModel
+  - [ ] Write tests for BlockchainViewModel
+  - [ ] Write tests for WalletViewModel
+  - [ ] Write tests for data binding
+
+---
+
+## 📊 DAILY COLLABORATION SCHEDULE
+
+### Daily Standups (9:00 AM)
+- **Monday:** Week planning and task assignment
+- **Tuesday:** Progress review and issue resolution
+- **Wednesday:** Mid-week checkpoint and adjustments
+- **Thursday:** Integration testing and bug fixes
+- **Friday:** Week completion and next week preparation
+
+### Weekly Reviews (Friday 5:00 PM)
+- **Week 1:** ✅ Completed - All core models implemented
+- **Week 2:** 🔄 In Progress - ViewModel implementation
+- **Week 3:** 🔄 Pending - Networking layer
+- **Week 4:** 🔄 Pending - UI development
+- **Week 5:** 🔄 Pending - Advanced features
+- **Week 6:** 🔄 Pending - Testing and deployment
+
+### Integration Points
+- **Model ↔ ViewModel:** Backend ↔ ViewModel Developer
+- **ViewModel ↔ View:** ViewModel ↔ Frontend Developer
+- **Network ↔ All:** Networking ↔ All Developers
+- **Testing:** All Developers ↔ All Layers
+
+---
+
+## 🎯 SUCCESS METRICS BY ROLE
+
+### Backend Developer
+- [x] All core data models implemented
+- [x] Cryptographic functions working
+- [x] Blockchain operations functional
+- [ ] Model layer APIs complete
+- [ ] Integration with ViewModels successful
+- [ ] Network layer integration complete
+
+### Frontend Developer
+- [x] All HTML templates created
+- [x] CSS styling implemented
+- [x] JavaScript functionality added
+- [ ] Flask routes implemented
+- [ ] API endpoints functional
+- [ ] UI responsive and user-friendly
+
+### Networking Developer
+- [x] File structure prepared
+- [ ] P2P network implemented
+- [ ] Consensus mechanism working
+- [ ] Node communication functional
+- [ ] Network synchronization complete
+- [ ] Advanced network features implemented
+
+### ViewModel Developer
+- [x] File structure prepared
+- [ ] MVVM architecture implemented
+- [ ] Data binding functional
+- [ ] Command pattern working
+- [ ] UI state management complete
+- [ ] Integration with all layers successful
+
+---
+
+## 📝 NOTES & ISSUES
+
+### Completed Successfully
+- ✅ Week 1: All team members completed their assigned tasks
+- ✅ Core data models fully implemented
+- ✅ File structure properly organized
+- ✅ Templates and styling prepared
+
+### Current Focus
+- 🔄 Week 2: ViewModel Developer leading implementation
+- 🔄 Other team members supporting integration
+- 🔄 Daily coordination for MVVM architecture
+
+### Next Priorities
+- Complete NodeViewModel implementation
+- Begin BlockchainViewModel development
+- Prepare for networking layer integration
+- Ensure proper team coordination
+
+---
+
+**Last Updated:** [Current Date]
+**Team Status:** Week 1 Complete, Week 2 In Progress
+**Coordination:** Daily standups active, integration points defined 

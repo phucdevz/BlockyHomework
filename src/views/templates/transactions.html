@@ -3,41 +3,120 @@
 {% block title %}Transactions - BlockyHomework{% endblock %}
 
 {% block content %}
-<div class="transactions">
-    <h2>Transactions</h2>
-    
-    <div class="create-transaction">
-        <h3>Create New Transaction</h3>
-        <form id="transaction-form">
-            <div class="form-group">
-                <label for="recipient">Recipient Address:</label>
-                <input type="text" id="recipient" name="recipient" required>
-            </div>
-            <div class="form-group">
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" name="amount" min="0.01" step="0.01" required>
-            </div>
-            <button type="submit">Send Transaction</button>
-        </form>
+<section class="section">
+    <div class="fade-in">
+        <h1>Transaction Management</h1>
+        <p class="text-muted">Create and manage blockchain transactions</p>
     </div>
-    
-    <div class="transaction-history">
-        <h3>Transaction History</h3>
-        <div class="transactions-list">
-            {% for tx in transactions %}
-            <div class="transaction-item">
-                <div class="tx-header">
-                    <span class="tx-hash">{{ tx.hash[:8] }}...</span>
-                    <span class="tx-status {{ tx.status }}">{{ tx.status }}</span>
+
+    <!-- Create Transaction Form -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Create New Transaction</h3>
+                            <span class="card-subtitle">Send ZTL Coin to another wallet</span>
+        </div>
+        <div class="card-content">
+            <form id="transaction-form" class="transaction-form">
+                <div class="form-group">
+                    <label for="sender" class="form-label">Sender Address</label>
+                    <input type="text" id="sender" name="sender" class="form-input" 
+                           placeholder="Enter sender wallet address" required>
                 </div>
-                <div class="tx-details">
-                    <span class="tx-from">From: {{ tx.sender[:8] }}...</span>
-                    <span class="tx-to">To: {{ tx.recipient[:8] }}...</span>
-                    <span class="tx-amount">{{ tx.amount }} PyCoin</span>
+                
+                <div class="form-group">
+                    <label for="recipient" class="form-label">Recipient Address</label>
+                    <input type="text" id="recipient" name="recipient" class="form-input" 
+                           placeholder="Enter recipient wallet address" required>
                 </div>
-            </div>
-            {% endfor %}
+                
+                <div class="form-group">
+                    <label for="amount" class="form-label">Amount (ZTL Coin)</label>
+                    <input type="number" id="amount" name="amount" class="form-input" 
+                           placeholder="Enter amount" min="0.001" step="0.001" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Create Transaction
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        Clear Form
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-</div>
+
+    <!-- Transaction History -->
+    <div class="grid grid-2">
+        <!-- Pending Transactions -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Pending Transactions</h3>
+                <span class="card-subtitle">Unconfirmed transactions in mempool</span>
+            </div>
+            <div class="card-content">
+                <div id="pending-transactions">
+                    <p class="no-data">Loading pending transactions...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmed Transactions -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Confirmed Transactions</h3>
+                <span class="card-subtitle">Transactions included in blocks</span>
+            </div>
+            <div class="card-content">
+                <div id="confirmed-transactions">
+                    <p class="no-data">Loading confirmed transactions...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Statistics -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Transaction Statistics</h3>
+            <span class="card-subtitle">Network transaction metrics</span>
+        </div>
+        <div class="card-content">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total Transactions</span>
+                    <span class="stat-value" id="total-transactions">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Pending Transactions</span>
+                    <span class="stat-value" id="pending-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Confirmed Transactions</span>
+                    <span class="stat-value" id="confirmed-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average Fee</span>
+                    <span class="stat-value" id="avg-fee">0.001 ZTL Coin</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Transactions-specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize transaction-specific functionality
+    console.log('Transactions page loaded');
+    
+    // Load transaction data
+    if (window.transactionManager) {
+        window.transactionManager.loadTransactions();
+    }
+});
+</script>
 {% endblock %} 

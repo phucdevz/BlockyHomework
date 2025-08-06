@@ -5,32 +5,30 @@ Constants for BlockyHomework blockchain system.
 # Blockchain Constants
 GENESIS_BLOCK_HASH = "0000000000000000000000000000000000000000000000000000000000000000"
 MINING_DIFFICULTY = 4
-BLOCK_REWARD = 10
-MAX_TRANSACTIONS_PER_BLOCK = 100
+BLOCK_REWARD = 10.0
 
 # Network Constants
 DEFAULT_PORT = 5000
-P2P_TIMEOUT = 30
-MAX_PEERS = 10
-BROADCAST_INTERVAL = 5
+MAX_CONNECTIONS = 10
+CONNECTION_TIMEOUT = 5000
 
 # Security Constants
-KEY_SIZE = 256
-HASH_ALGORITHM = 'sha256'
-SIGNATURE_ALGORITHM = 'ECDSA'
+HASH_ALGORITHM = "sha256"
+SIGNATURE_ALGORITHM = "ecdsa"
 
 # UI Constants
 REFRESH_INTERVAL = 5000
-MAX_DISPLAY_BLOCKS = 50
-NOTIFICATION_TIMEOUT = 3000
+ANIMATION_DURATION = 300
 
 # API Endpoints
-API_PREFIX = '/api'
+API_BASE = "/api"
 ENDPOINTS = {
-    'TRANSACTIONS': '/transactions',
-    'CHAIN': '/chain',
-    'MINE': '/mine',
-    'NODES': '/nodes',
-    'WALLET': '/wallet',
-    'SIMULATION': '/simulation'
+    "blockchain_status": f"{API_BASE}/blockchain/status",
+    "wallet_balance": f"{API_BASE}/wallet/balance",
+    "mining_status": f"{API_BASE}/mining/status",
+    "network_status": f"{API_BASE}/network/status",
+    "create_transaction": f"{API_BASE}/transactions/create",
+    "start_mining": f"{API_BASE}/mining/start",
+    "stop_mining": f"{API_BASE}/mining/stop",
+    "mine_block": f"{API_BASE}/mining/mine-block"
 } 

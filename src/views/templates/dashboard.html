@@ -3,45 +3,121 @@
 {% block title %}Dashboard - BlockyHomework{% endblock %}
 
 {% block content %}
-<div class="dashboard">
-    <h2>Blockchain Dashboard</h2>
-    
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h3>Chain Length</h3>
-            <p>{{ chain_length }}</p>
-        </div>
-        <div class="stat-card">
-            <h3>Wallet Balance</h3>
-            <p>{{ wallet_balance }}</p>
-        </div>
-        <div class="stat-card">
-            <h3>Pending Transactions</h3>
-            <p>{{ pending_transactions }}</p>
-        </div>
-        <div class="stat-card">
-            <h3>Connected Nodes</h3>
-            <p>{{ connected_nodes }}</p>
+<section class="section">
+    <div class="fade-in">
+        <h1>Blockchain Dashboard</h1>
+        <p class="text-muted">Monitor your blockchain network in real-time</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="dashboard-stats">
+        <div id="blockchain-stats">
+            <!-- Stats will be loaded by JavaScript -->
         </div>
     </div>
-    
-    <div class="actions">
-        <button onclick="createTransaction()">Create Transaction</button>
-        <button onclick="mineBlock()">Mine Block</button>
-        <button onclick="refreshData()">Refresh</button>
-    </div>
-    
-    <div class="recent-blocks">
-        <h3>Recent Blocks</h3>
-        <div class="blocks-list">
-            {% for block in recent_blocks %}
-            <div class="block-item">
-                <span class="block-index">#{{ block.index }}</span>
-                <span class="block-hash">{{ block.hash[:8] }}...</span>
-                <span class="block-transactions">{{ block.transactions|length }} tx</span>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-2">
+        <!-- Recent Blocks -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Recent Blocks</h3>
+                <span class="card-subtitle">Latest blockchain activity</span>
             </div>
-            {% endfor %}
+            <div class="card-content">
+                <div id="recent-blocks">
+                    <p class="no-data">Loading recent blocks...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Information -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Wallet Status</h3>
+                <span class="card-subtitle">Your blockchain wallet</span>
+            </div>
+            <div class="card-content">
+                <div id="wallet-info">
+                    <div class="wallet-address">
+                        <strong>Address:</strong> 
+                        <span id="wallet-address">Loading...</span>
+                    </div>
+                    <div class="wallet-balance">
+                        <strong>Balance:</strong> 
+                        <span id="wallet-balance">Loading...</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Network Status -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Network Status</h3>
+            <span class="card-subtitle">P2P network information</span>
+        </div>
+        <div class="card-content">
+            <div id="network-status">
+                <!-- Network stats will be loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mining Status -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Mining Status</h3>
+            <span class="card-subtitle">Current mining operations</span>
+        </div>
+        <div class="card-content">
+            <div id="mining-status">
+                <!-- Mining status will be loaded by JavaScript -->
+            </div>
+            <div class="mining-controls">
+                <button class="btn btn-primary" onclick="startMining()" id="start-mining">
+                    Start Mining
+                </button>
+                <button class="btn btn-secondary" onclick="stopMining()" id="stop-mining" disabled>
+                    Stop Mining
+                </button>
+                <button class="btn btn-success" onclick="mineBlock()" id="mine-block">
+                    Mine Single Block
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Quick Actions</h3>
+            <span class="card-subtitle">Common blockchain operations</span>
+        </div>
+        <div class="card-content">
+            <div class="actions-grid">
+                <a href="/transactions" class="btn btn-primary">
+                    Create Transaction
+                </a>
+                <a href="/network" class="btn btn-secondary">
+                    View Network
+                </a>
+                <a href="/simulation" class="btn btn-warning">
+                    Run Simulation
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Dashboard-specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dashboard-specific functionality
+    console.log('Dashboard loaded');
+});
+</script>
 {% endblock %} 

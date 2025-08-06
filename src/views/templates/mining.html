@@ -3,51 +3,156 @@
 {% block title %}Mining - BlockyHomework{% endblock %}
 
 {% block content %}
-<div class="mining">
-    <h2>Block Mining</h2>
-    
-    <div class="mining-status">
-        <h3>Mining Status</h3>
-        <div class="status-indicator {{ mining_status }}">
-            <span class="status-text">{{ mining_status|title }}</span>
-        </div>
-        <div class="mining-stats">
-            <p>Current Difficulty: {{ current_difficulty }}</p>
-            <p>Blocks Mined: {{ blocks_mined }}</p>
-            <p>Hash Rate: {{ hash_rate }} H/s</p>
-        </div>
+<section class="section">
+    <div class="fade-in">
+        <h1>Block Mining</h1>
+        <p class="text-muted">Mine new blocks and earn ZTL Coin rewards</p>
     </div>
-    
-    <div class="mining-controls">
-        <h3>Mining Controls</h3>
-        <div class="control-buttons">
-            <button onclick="startMining()" class="btn-start">Start Mining</button>
-            <button onclick="stopMining()" class="btn-stop">Stop Mining</button>
-            <button onclick="mineSingleBlock()" class="btn-single">Mine Single Block</button>
+
+    <!-- Mining Status -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Mining Status</h3>
+            <span class="card-subtitle">Current mining operations</span>
         </div>
-    </div>
-    
-    <div class="mining-progress">
-        <h3>Current Mining Progress</h3>
-        <div class="progress-bar">
-            <div class="progress-fill" style="width: {{ progress_percentage }}%"></div>
-        </div>
-        <p>Nonce: {{ current_nonce }}</p>
-        <p>Current Hash: {{ current_hash }}</p>
-    </div>
-    
-    <div class="recent-blocks">
-        <h3>Recently Mined Blocks</h3>
-        <div class="blocks-list">
-            {% for block in recent_mined_blocks %}
-            <div class="block-item mined">
-                <span class="block-index">#{{ block.index }}</span>
-                <span class="block-hash">{{ block.hash[:8] }}...</span>
-                <span class="block-proof">Proof: {{ block.proof }}</span>
-                <span class="block-time">{{ block.timestamp|datetime }}</span>
+        <div class="card-content">
+            <div id="mining-status">
+                <div class="mining-status">
+                    <div class="mining-indicator inactive"></div>
+                    <div class="mining-info">
+                        <div class="mining-status-text">Mining Inactive</div>
+                        <div class="mining-details">
+                            <span class="mining-difficulty">Difficulty: <span id="current-difficulty">0</span></span>
+                            <span class="mining-reward">Reward: <span id="block-reward">10 ZTL Coin</span></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
         </div>
     </div>
-</div>
+
+    <!-- Mining Controls -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Mining Controls</h3>
+            <span class="card-subtitle">Manage mining operations</span>
+        </div>
+        <div class="card-content">
+            <div class="mining-controls">
+                <button class="btn btn-primary" onclick="startMining()" id="start-mining">
+                    <span class="btn-icon">⛏️</span>
+                    Start Mining
+                </button>
+                <button class="btn btn-secondary" onclick="stopMining()" id="stop-mining" disabled>
+                    <span class="btn-icon">⏹️</span>
+                    Stop Mining
+                </button>
+                <button class="btn btn-success" onclick="mineBlock()" id="mine-block">
+                    <span class="btn-icon">🔨</span>
+                    Mine Single Block
+                </button>
+            </div>
+            
+            <div class="mining-progress" id="mining-progress" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress">
+                        <div class="progress-bar" id="mining-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="mining-progress-text">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mining Statistics -->
+    <div class="grid grid-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Blocks Mined</h3>
+                <span class="card-subtitle">Total blocks mined by this node</span>
+            </div>
+            <div class="card-content">
+                <div class="stat-number" id="blocks-mined">0</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Mining Rate</h3>
+                <span class="card-subtitle">Blocks per hour</span>
+            </div>
+            <div class="card-content">
+                <div class="stat-number" id="mining-rate">0</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Total Rewards</h3>
+                <span class="card-subtitle">ZTL Coin earned from mining</span>
+            </div>
+            <div class="card-content">
+                <div class="stat-number" id="total-rewards">0 ZTL Coin</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recently Mined Blocks -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Recently Mined Blocks</h3>
+            <span class="card-subtitle">Latest blocks mined by this node</span>
+        </div>
+        <div class="card-content">
+            <div id="recently-mined-blocks">
+                <p class="no-data">No blocks mined yet</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mining Configuration -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Mining Configuration</h3>
+            <span class="card-subtitle">Adjust mining parameters</span>
+        </div>
+        <div class="card-content">
+            <form class="mining-config-form">
+                <div class="form-group">
+                    <label for="mining-threads" class="form-label">Mining Threads</label>
+                    <input type="number" id="mining-threads" class="form-input" 
+                           value="1" min="1" max="8">
+                </div>
+                
+                <div class="form-group">
+                    <label for="auto-mine" class="form-label">Auto Mining</label>
+                    <select id="auto-mine" class="form-select">
+                        <option value="true">Enabled</option>
+                        <option value="false">Disabled</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        Save Configuration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Mining-specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Mining page loaded');
+    
+    // Initialize mining-specific functionality
+    if (window.miningManager) {
+        window.miningManager.updateMiningStatus();
+    }
+});
+</script>
 {% endblock %} 

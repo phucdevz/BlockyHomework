@@ -1,20 +1,14 @@
-# BlockyHomework - Requirements
-
 # Core Dependencies
-python>=3.9
-flask>=2.3.0
-fastapi>=0.100.0
-requests>=2.31.0
-cryptography>=41.0.0
-ecdsa>=0.18.0
+Flask==2.3.3
+ecdsa==0.18.0
+cryptography==41.0.7
 
 # Development Dependencies
-pytest>=7.4.0
-pytest-cov>=4.1.0
-black>=23.0.0
-flake8>=6.0.0
-mypy>=1.5.0
+pytest==7.4.3
+pytest-cov==4.1.0
+black==23.11.0
+flake8==6.1.0
 
 # Optional Dependencies
-uvicorn>=0.20.0
-python-dotenv>=1.0.0 
+requests==2.31.0
+websockets==12.0 

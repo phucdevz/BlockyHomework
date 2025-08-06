@@ -9,6 +9,7 @@ A miniature blockchain system built with Python following the MVVM (Model-View-V
 - **Web Interface**: Modern, responsive UI for blockchain interaction
 - **Attack Simulation**: 51% attack simulation for educational purposes
 - **MVVM Architecture**: Clean separation of concerns with Model-View-ViewModel pattern
+- **ZTL Coin**: Native cryptocurrency for the blockchain network
 
 ## 📁 Project Structure
 
