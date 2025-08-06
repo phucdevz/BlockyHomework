@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Network - BlockyHomework{% endblock %}
+
+{% block content %}
+<div class="network">
+    <h2>Network Status</h2>
+    
+    <div class="network-overview">
+        <h3>Network Overview</h3>
+        <div class="network-stats">
+            <div class="stat-item">
+                <span class="stat-label">Connected Nodes:</span>
+                <span class="stat-value">{{ connected_nodes_count }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Network Status:</span>
+                <span class="stat-value {{ network_status }}">{{ network_status|title }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Sync Status:</span>
+                <span class="stat-value {{ sync_status }}">{{ sync_status|title }}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="node-list">
+        <h3>Connected Nodes</h3>
+        <div class="nodes-grid">
+            {% for node in connected_nodes %}
+            <div class="node-item">
+                <div class="node-info">
+                    <span class="node-address">{{ node.address }}</span>
+                    <span class="node-status {{ node.status }}">{{ node.status }}</span>
+                </div>
+                <div class="node-details">
+                    <span class="node-chain-length">Chain: {{ node.chain_length }}</span>
+                    <span class="node-last-seen">Last seen: {{ node.last_seen }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="network-actions">
+        <h3>Network Actions</h3>
+        <div class="action-buttons">
+            <button onclick="discoverNodes()">Discover Nodes</button>
+            <button onclick="syncWithNetwork()">Sync with Network</button>
+            <button onclick="broadcastTransaction()">Broadcast Transaction</button>
+            <button onclick="refreshNetwork()">Refresh Network</button>
+        </div>
+    </div>
+    
+    <div class="network-topology">
+        <h3>Network Topology</h3>
+        <div class="topology-visualization">
+            <!-- Network topology visualization will be rendered here -->
+            <canvas id="network-canvas" width="800" height="400"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,36 @@
+"""
+Constants for BlockyHomework blockchain system.
+"""
+
+# Blockchain Constants
+GENESIS_BLOCK_HASH = "0000000000000000000000000000000000000000000000000000000000000000"
+MINING_DIFFICULTY = 4
+BLOCK_REWARD = 10
+MAX_TRANSACTIONS_PER_BLOCK = 100
+
+# Network Constants
+DEFAULT_PORT = 5000
+P2P_TIMEOUT = 30
+MAX_PEERS = 10
+BROADCAST_INTERVAL = 5
+
+# Security Constants
+KEY_SIZE = 256
+HASH_ALGORITHM = 'sha256'
+SIGNATURE_ALGORITHM = 'ECDSA'
+
+# UI Constants
+REFRESH_INTERVAL = 5000
+MAX_DISPLAY_BLOCKS = 50
+NOTIFICATION_TIMEOUT = 3000
+
+# API Endpoints
+API_PREFIX = '/api'
+ENDPOINTS = {
+    'TRANSACTIONS': '/transactions',
+    'CHAIN': '/chain',
+    'MINE': '/mine',
+    'NODES': '/nodes',
+    'WALLET': '/wallet',
+    'SIMULATION': '/simulation'
+} 

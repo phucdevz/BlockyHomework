@@ -531,6 +531,6 @@ Dự án này không chỉ tạo ra một sản phẩm blockchain thu nhỏ mà 
 ---
 
 **Document Version:** 1.1  
-**Last Updated:** [Current Date]  
-**Prepared by:** System Architect & Project Manager  
-**Approved by:** [To be filled] 
+**Last Updated:** 8/6/2025
+**Prepared by:** Nguyễn Trường Phục 
+**Approved by:** Nguyễn Trường Phục 

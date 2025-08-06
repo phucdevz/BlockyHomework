@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BlockyHomework{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h1>BlockyHomework</h1>
+            <ul>
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/transactions">Transactions</a></li>
+                <li><a href="/mining">Mining</a></li>
+                <li><a href="/network">Network</a></li>
+                <li><a href="/simulation">Simulation</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html> 

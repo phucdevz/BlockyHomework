@@ -11,7 +11,7 @@
 ## PHÂN CÔNG THÀNH VIÊN
 
 ### 🧑‍💻 **THÀNH VIÊN 1: BACKEND DEVELOPER (Core Blockchain)**
-**Tên:** [Tên thành viên]
+**Tên:** Nguyễn Trường Phục + Nguyễn Phạm Thiên Phước
 **Vai trò:** Blockchain Core Developer
 **Chuyên môn:** Python, Cryptography, Data Structures
 
@@ -57,7 +57,7 @@
 ---
 
 ### 🎨 **THÀNH VIÊN 2: FRONTEND DEVELOPER (UI/UX)**
-**Tên:** [Tên thành viên]
+**Tên:** Lê Đức Anh + Nguyễn Đức Lượng
 **Vai trò:** Frontend Developer & UI/UX Designer
 **Chuyên môn:** HTML/CSS/JavaScript, Flask, User Interface Design
 
@@ -103,7 +103,7 @@
 ---
 
 ### 🔗 **THÀNH VIÊN 3: NETWORKING DEVELOPER (P2P & API)**
-**Tên:** [Tên thành viên]
+**Tên:** Nguyễn Đức Lượng + Lê Đức Anh
 **Vai trò:** Networking & API Developer
 **Chuyên môn:** HTTP, Socket Programming, RESTful APIs
 
@@ -149,7 +149,7 @@
 ---
 
 ### 🎯 **THÀNH VIÊN 4: VIEWMODEL DEVELOPER (Business Logic)**
-**Tên:** [Tên thành viên]
+**Tên:** Nguyễn Phạm Thiên Phước + Nguyễn Trường Phục
 **Vai trò:** ViewModel & Integration Developer
 **Chuyên môn:** MVVM Pattern, State Management, Data Binding
 

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Mining - BlockyHomework{% endblock %}
+
+{% block content %}
+<div class="mining">
+    <h2>Block Mining</h2>
+    
+    <div class="mining-status">
+        <h3>Mining Status</h3>
+        <div class="status-indicator {{ mining_status }}">
+            <span class="status-text">{{ mining_status|title }}</span>
+        </div>
+        <div class="mining-stats">
+            <p>Current Difficulty: {{ current_difficulty }}</p>
+            <p>Blocks Mined: {{ blocks_mined }}</p>
+            <p>Hash Rate: {{ hash_rate }} H/s</p>
+        </div>
+    </div>
+    
+    <div class="mining-controls">
+        <h3>Mining Controls</h3>
+        <div class="control-buttons">
+            <button onclick="startMining()" class="btn-start">Start Mining</button>
+            <button onclick="stopMining()" class="btn-stop">Stop Mining</button>
+            <button onclick="mineSingleBlock()" class="btn-single">Mine Single Block</button>
+        </div>
+    </div>
+    
+    <div class="mining-progress">
+        <h3>Current Mining Progress</h3>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ progress_percentage }}%"></div>
+        </div>
+        <p>Nonce: {{ current_nonce }}</p>
+        <p>Current Hash: {{ current_hash }}</p>
+    </div>
+    
+    <div class="recent-blocks">
+        <h3>Recently Mined Blocks</h3>
+        <div class="blocks-list">
+            {% for block in recent_mined_blocks %}
+            <div class="block-item mined">
+                <span class="block-index">#{{ block.index }}</span>
+                <span class="block-hash">{{ block.hash[:8] }}...</span>
+                <span class="block-proof">Proof: {{ block.proof }}</span>
+                <span class="block-time">{{ block.timestamp|datetime }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - BlockyHomework{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Blockchain Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Chain Length</h3>
+            <p>{{ chain_length }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Wallet Balance</h3>
+            <p>{{ wallet_balance }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Pending Transactions</h3>
+            <p>{{ pending_transactions }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Connected Nodes</h3>
+            <p>{{ connected_nodes }}</p>
+        </div>
+    </div>
+    
+    <div class="actions">
+        <button onclick="createTransaction()">Create Transaction</button>
+        <button onclick="mineBlock()">Mine Block</button>
+        <button onclick="refreshData()">Refresh</button>
+    </div>
+    
+    <div class="recent-blocks">
+        <h3>Recent Blocks</h3>
+        <div class="blocks-list">
+            {% for block in recent_blocks %}
+            <div class="block-item">
+                <span class="block-index">#{{ block.index }}</span>
+                <span class="block-hash">{{ block.hash[:8] }}...</span>
+                <span class="block-transactions">{{ block.transactions|length }} tx</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

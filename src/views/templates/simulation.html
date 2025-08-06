@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Simulation - BlockyHomework{% endblock %}
+
+{% block content %}
+<div class="simulation">
+    <h2>Attack Simulation</h2>
+    
+    <div class="simulation-controls">
+        <h3>Simulation Controls</h3>
+        <div class="control-panel">
+            <div class="form-group">
+                <label for="attack-type">Attack Type:</label>
+                <select id="attack-type">
+                    <option value="51-percent">51% Attack</option>
+                    <option value="double-spend">Double Spend</option>
+                    <option value="fork-attack">Fork Attack</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="attack-power">Attack Power (%):</label>
+                <input type="range" id="attack-power" min="1" max="100" value="51">
+                <span id="power-display">51%</span>
+            </div>
+            <div class="form-group">
+                <label for="attack-duration">Duration (seconds):</label>
+                <input type="number" id="attack-duration" min="10" max="300" value="60">
+            </div>
+            <div class="control-buttons">
+                <button onclick="startSimulation()" class="btn-start">Start Simulation</button>
+                <button onclick="stopSimulation()" class="btn-stop">Stop Simulation</button>
+                <button onclick="resetSimulation()" class="btn-reset">Reset</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="simulation-status">
+        <h3>Simulation Status</h3>
+        <div class="status-display">
+            <div class="status-item">
+                <span class="label">Status:</span>
+                <span class="value {{ simulation_status }}">{{ simulation_status|title }}</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Progress:</span>
+                <span class="value">{{ simulation_progress }}%</span>
+            </div>
+            <div class="status-item">
+                <span class="label">Time Elapsed:</span>
+                <span class="value">{{ time_elapsed }}s</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="simulation-visualization">
+        <h3>Attack Visualization</h3>
+        <div class="visualization-container">
+            <div class="chain-comparison">
+                <div class="legitimate-chain">
+                    <h4>Legitimate Chain</h4>
+                    <div class="chain-blocks">
+                        {% for block in legitimate_chain %}
+                        <div class="block legitimate">
+                            <span class="block-index">#{{ block.index }}</span>
+                            <span class="block-hash">{{ block.hash[:6] }}...</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="attack-chain">
+                    <h4>Attack Chain</h4>
+                    <div class="chain-blocks">
+                        {% for block in attack_chain %}
+                        <div class="block attack">
+                            <span class="block-index">#{{ block.index }}</span>
+                            <span class="block-hash">{{ block.hash[:6] }}...</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="simulation-results">
+        <h3>Simulation Results</h3>
+        <div class="results-summary">
+            <div class="result-item">
+                <span class="label">Attack Success:</span>
+                <span class="value {{ attack_success }}">{{ attack_success|title }}</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Blocks Mined (Attack):</span>
+                <span class="value">{{ attack_blocks_mined }}</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Blocks Mined (Legitimate):</span>
+                <span class="value">{{ legitimate_blocks_mined }}</span>
+            </div>
+            <div class="result-item">
+                <span class="label">Chain Replaced:</span>
+                <span class="value {{ chain_replaced }}">{{ chain_replaced|title }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

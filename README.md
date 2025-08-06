@@ -1,102 +1,122 @@
 # BlockyHomework
 
-A student-made mini blockchain project for learning, demonstration, and fun!
+A miniature blockchain system built with Python following the MVVM (Model-View-ViewModel) architecture pattern.
 
-> **BlockyHomework** is a miniature blockchain system built with Python for educational purposes. It features Proof-of-Work, peer-to-peer networking, a basic wallet, transaction signing, and a simple web interface. Designed with MVVM architecture for modularity and easy extension. Includes a 51% attack simulation for research and teaching.
+## 🚀 Features
 
----
+- **Complete Blockchain Implementation**: Full PoW (Proof of Work) consensus mechanism
+- **P2P Network**: Peer-to-peer networking with automatic node discovery
+- **Web Interface**: Modern, responsive UI for blockchain interaction
+- **Attack Simulation**: 51% attack simulation for educational purposes
+- **MVVM Architecture**: Clean separation of concerns with Model-View-ViewModel pattern
 
-## Features
+## 📁 Project Structure
 
-- Create, sign, and broadcast transactions
-- Proof-of-Work mining with adjustable difficulty
-- Peer-to-peer (P2P) networking and node discovery
-- Blockchain synchronization (consensus: longest chain rule)
-- Simple web interface for interaction and visualization
-- Modular MVVM codebase – easy to read, maintain, and expand
-- 51% attack simulation module for security experiments
+```
+blocky_homework/
+├── src/
+│   ├── models/           # MODEL Layer - Core blockchain logic
+│   ├── viewmodels/       # VIEWMODEL Layer - Business logic bridge
+│   ├── views/            # VIEW Layer - UI templates and routes
+│   ├── networking/       # P2P networking and API
+│   ├── utils/            # Utility functions
+│   └── simulation/       # Attack simulation features
+├── config/               # Configuration settings
+├── tests/                # Test suite
+├── docs/                 # Documentation
+└── scripts/              # Utility scripts
+```
 
----
+## 🛠️ Installation
 
-## Project Structure
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/blocky-homework.git
+   cd blocky-homework
+   ```
 
-blockyhomework/
-├── app/
-│ ├── model/ # Block, Transaction, Wallet, Blockchain logic
-│ ├── viewmodel/ # NodeViewModel: business logic, state handling
-│ ├── view/ # Flask/FastAPI web routes & HTML templates
-│ ├── networking/ # Peer discovery, sync, RESTful API
-│ ├── utils/ # Crypto helpers, logging
-│ └── config.py
-├── scripts/ # Simulation (e.g., 51% attack)
-├── tests/ # Unit and integration tests
-├── requirements.txt
-├── README.md
-└── run.py # Entry point to start a node
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+3. **Run the application**
+   ```bash
+   python scripts/start_node.py
+   ```
 
----
+## 🎯 Usage
 
-## 🚀 Quick Start
+### Starting a Node
+```bash
+python scripts/start_node.py --port 5000
+```
 
-1. **Install requirements:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+### Creating a Wallet
+```bash
+python scripts/create_wallet.py
+```
 
-2. **Run a node:**
-    ```bash
-    python run.py
-    ```
-    Open your browser at [http://localhost:5000](http://localhost:5000)
+### Running Attack Simulation
+```bash
+python scripts/simulate_attack.py --type 51-percent --power 60 --duration 60
+```
 
-3. **Try multi-node:**
-    - Start on different ports for multiple nodes (e.g., `python run.py --port 5001`).
-    - Register new peers via the web UI or API.
+## 🌐 Web Interface
 
----
+Access the web interface at `http://localhost:5000` to:
 
-## Core Concepts
+- **Dashboard**: View blockchain statistics and recent blocks
+- **Transactions**: Create and view transactions
+- **Mining**: Control mining operations
+- **Network**: Monitor P2P network status
+- **Simulation**: Run attack simulations
 
-- **Blockchain:** Immutable, linked list of blocks, each containing verified transactions.
-- **Mining:** Proof-of-Work to add new blocks and secure the chain.
-- **Transactions:** Signed with private keys, validated by network.
-- **Consensus:** Nodes accept the longest valid chain.
-- **P2P Networking:** Nodes discover and sync with each other automatically.
-- **MVVM:** Clear separation between data (Model), logic (ViewModel), and interface (View).
+## 🏗️ Architecture
 
----
+### MVVM Pattern Implementation
 
-## Educational Use
+- **Model**: Core blockchain classes (Block, Transaction, Wallet, Blockchain)
+- **ViewModel**: Business logic and state management (NodeViewModel, BlockchainViewModel)
+- **View**: Web interface templates and routes
 
-BlockyHomework is designed for students, teachers, and anyone curious about blockchain. You can:
-- Visualize how transactions and mining work
-- Experiment with consensus and security scenarios (like 51% attacks)
-- Extend for your own research or coursework
+### Key Components
 
----
+- **Blockchain Engine**: Complete PoW implementation with difficulty adjustment
+- **P2P Network**: Automatic node discovery and synchronization
+- **Web API**: RESTful endpoints for blockchain operations
+- **Attack Simulator**: Educational 51% attack simulation
 
-## 🛡️ 51% Attack Simulation
+## 🧪 Testing
 
-A built-in module lets you simulate a 51% attack, visualizing chain forks and network takeover attempts—ideal for learning about blockchain security.
+Run the test suite:
+```bash
+pytest tests/ -v --cov=src
+```
 
----
+## 📚 Documentation
 
-## Documentation
+- [API Documentation](docs/api_documentation.md)
+- [Deployment Guide](docs/deployment_guide.md)
+- [User Manual](docs/user_manual.md)
 
-- [Project Overview](docs/overview.md)
-- [API Reference](docs/api.md)
-- [How MVVM Works in BlockyHomework](docs/mvvm.md)
+## 🤝 Contributing
 
----
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
 
-## Contributing
+## 📄 License
 
-PRs and suggestions are welcome! Fork the repo, create a branch, and submit your improvements.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+## 🙏 Acknowledgments
 
-## License
+- Inspired by Bitcoin's blockchain architecture
+- Built for educational purposes
+- Uses modern Python development practices
 
 
 
