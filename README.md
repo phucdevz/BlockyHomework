@@ -1,122 +1,128 @@
 # BlockyHomework
 
-A miniature blockchain system built with Python following the MVVM (Model-View-ViewModel) architecture pattern.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square"/>
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Made%20by-Zero%20Latency%20Team-orange?style=flat-square"/>
+</p>
 
-## 🚀 Features
+---
 
-- **Complete Blockchain Implementation**: Full PoW (Proof of Work) consensus mechanism
-- **P2P Network**: Peer-to-peer networking with automatic node discovery
-- **Web Interface**: Modern, responsive UI for blockchain interaction
-- **Attack Simulation**: 51% attack simulation for educational purposes
-- **MVVM Architecture**: Clean separation of concerns with Model-View-ViewModel pattern
+**BlockyHomework**  
+> _A student-crafted, MVVM-powered, fully interactive blockchain playground for learning, research, and innovation._
 
-## 📁 Project Structure
+---
 
-```
-blocky_homework/
-├── src/
-│   ├── models/           # MODEL Layer - Core blockchain logic
-│   ├── viewmodels/       # VIEWMODEL Layer - Business logic bridge
-│   ├── views/            # VIEW Layer - UI templates and routes
-│   ├── networking/       # P2P networking and API
-│   ├── utils/            # Utility functions
-│   └── simulation/       # Attack simulation features
-├── config/               # Configuration settings
-├── tests/                # Test suite
-├── docs/                 # Documentation
-└── scripts/              # Utility scripts
-```
+## Overview
 
-## 🛠️ Installation
+**BlockyHomework** is a miniature yet powerful blockchain system developed with Python and MVVM architecture, enabling students and enthusiasts to visualize, interact with, and experiment on core blockchain concepts — all in one clean and modern web interface.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/blocky-homework.git
-   cd blocky-homework
-   ```
+- **Proof-of-Work mining**  
+- **Peer-to-peer networking (P2P)**  
+- **Secure wallet & transaction signing**  
+- **Consensus & chain synchronization**  
+- **51% attack simulation module**  
+- **Modular, extensible, and hackable for all levels**
 
-2. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
 
-3. **Run the application**
-   ```bash
-   python scripts/start_node.py
-   ```
+## Key Features
 
-## 🎯 Usage
+- **Intuitive MVVM Design:**  
+  Modular code separation (Model, ViewModel, View) for maximum scalability and clean maintenance.
 
-### Starting a Node
-```bash
-python scripts/start_node.py --port 5000
-```
+- **Proof-of-Work Blockchain:**  
+  Mine new blocks, adjust difficulty, and understand security by design.
 
-### Creating a Wallet
-```bash
-python scripts/create_wallet.py
-```
+- **P2P Node Discovery & Networking:**  
+  Connect, register, and sync with other nodes—no manual setup needed.
 
-### Running Attack Simulation
-```bash
-python scripts/simulate_attack.py --type 51-percent --power 60 --duration 60
-```
+- **Digital Wallet & Transaction Signing:**  
+  Create and sign transactions securely using your private key.
 
-## 🌐 Web Interface
+- **51% Attack Simulation:**  
+  Experience consensus mechanisms and blockchain vulnerabilities firsthand.
 
-Access the web interface at `http://localhost:5000` to:
+- **Modern Web Interface:**  
+  Simple, responsive, and interactive for all users.
 
-- **Dashboard**: View blockchain statistics and recent blocks
-- **Transactions**: Create and view transactions
-- **Mining**: Control mining operations
-- **Network**: Monitor P2P network status
-- **Simulation**: Run attack simulations
+---
 
-## 🏗️ Architecture
+## Quick Start
 
-### MVVM Pattern Implementation
+1. **Clone the repo:**
+    ```bash
+    git clone https://github.com/phucdevz/BlockyHomework.git
+    cd BlockyHomework
+    ```
 
-- **Model**: Core blockchain classes (Block, Transaction, Wallet, Blockchain)
-- **ViewModel**: Business logic and state management (NodeViewModel, BlockchainViewModel)
-- **View**: Web interface templates and routes
+2. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### Key Components
+3. **Run your first node:**
+    ```bash
+    python run.py
+    ```
+    Open your browser at [http://localhost:5000](http://localhost:5000)
 
-- **Blockchain Engine**: Complete PoW implementation with difficulty adjustment
-- **P2P Network**: Automatic node discovery and synchronization
-- **Web API**: RESTful endpoints for blockchain operations
-- **Attack Simulator**: Educational 51% attack simulation
+4. **Launch multiple nodes:**  
+   Open new terminals and run on different ports:  
+    ```bash
+    python run.py --port 5001
+    ```
 
-## 🧪 Testing
+---
 
-Run the test suite:
-```bash
-pytest tests/ -v --cov=src
-```
+## Core Concepts
 
-## 📚 Documentation
+- **Blockchain:** Immutable ledger secured by cryptographic hashes, proof-of-work, and digital signatures.
+- **Mining:** Find valid nonces to add blocks; get rewarded and secure the chain.
+- **Transactions:** Signed and broadcast to the network. Validated and stored immutably.
+- **Consensus:** Nodes auto-select the longest valid chain (Nakamoto consensus).
+- **P2P Networking:** Nodes discover each other and sync chains automatically.
+- **MVVM Pattern:** Clean separation between logic, data, and presentation.
 
-- [API Documentation](docs/api_documentation.md)
-- [Deployment Guide](docs/deployment_guide.md)
-- [User Manual](docs/user_manual.md)
+---
 
-## 🤝 Contributing
+## 51% Attack Simulation
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
+> Try the [scripts/simulate_51_attack.py](scripts/simulate_51_attack.py) module to visualize a 51% attack scenario, learn about blockchain security, and see the chain resolve forks in real time.
 
-## 📄 License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## User Interface Preview
 
-## 🙏 Acknowledgments
+<img src="https://raw.githubusercontent.com/phucdevz/BlockyHomework/main/docs/ui_mockup.png" alt="UI Preview" width="80%"/>
 
-- Inspired by Bitcoin's blockchain architecture
-- Built for educational purposes
-- Uses modern Python development practices
+---
+
+## Documentation
+
+- [API Reference](docs/api.md)
+- [System Design & Architecture](docs/architecture.md)
+- [How MVVM Works in BlockyHomework](docs/mvvm.md)
+
+---
+
+## Authors & Contributors
+
+**Zero Latency Team**  
+- Nguyễn Trường Phục  
+- Nguyễn Phạm Thiên Phước  
+- Nguyễn Đức Lượng  
+- Lê Đức Anh  
+
+Contact: [phucdeeptry723@gmail.com](mailto:phucdeeptry723@gmail.com)
+
+---
+
+## Contribution
+
+We welcome all PRs, issue reports, and suggestions!  
+Fork the repo, make a branch, and let’s build something great together.
+
 
 
 
