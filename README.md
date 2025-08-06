@@ -1,4 +1,6 @@
-# BlockyHomework
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:8EC5FC,100:E0C3FC&height=180&section=header&text=BlockyHomework&fontSize=45&fontAlign=50&fontColor=fff" alt="BlockyHomework Banner"/>
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square"/>
