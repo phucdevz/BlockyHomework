@@ -15,30 +15,75 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}BlockyHomework - Hệ thống blockchain thu nhỏ với PoW, mạng P2P, giả lập tấn công 51%. Học blockchain thực tế với ZTL Coin.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}blockchain, proof of work, P2P network, 51% attack, cryptocurrency, ZTL Coin, ECDSA, Nakamoto consensus, Python blockchain, MVVM architecture{% endblock %}">
+    <meta name="author" content="BlockyHomework Team">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
+    <meta property="og:image" content="{{ url_for('static', filename='images/blockyhomework-og.png', _external=True) }}">
+    <meta property="og:site_name" content="BlockyHomework">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.url }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{{ self.title() }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{{ self.description() }}{% endblock %}">
+    <meta property="twitter:image" content="{{ url_for('static', filename='images/blockyhomework-twitter.png', _external=True) }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.url }}">
+    
+    <!-- Additional SEO -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ url_for('sitemap') }}">
+    
+    <!-- Additional head content -->
+    {% block head %}{% endblock %}
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="navbar-container">
             <div class="navbar-brand">
-                <div class="logo">B</div>
+                <div class="logo" aria-label="BlockyHomework Logo">B</div>
                 <span>BlockyHomework</span>
             </div>
             
-            <ul class="navbar-nav">
-                <li><a href="/" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}">Dashboard</a></li>
-                <li><a href="/transactions" class="nav-link {% if request.endpoint == 'transactions' %}active{% endif %}">Transactions</a></li>
-                <li><a href="/mining" class="nav-link {% if request.endpoint == 'mining' %}active{% endif %}">Mining</a></li>
-                <li><a href="/network" class="nav-link {% if request.endpoint == 'network' %}active{% endif %}">Network</a></li>
-                <li><a href="/simulation" class="nav-link {% if request.endpoint == 'simulation' %}active{% endif %}">Simulation</a></li>
+            <ul class="navbar-nav" role="menubar">
+                <li role="none"><a href="/home" class="nav-link {% if request.endpoint == 'home' %}active{% endif %}" role="menuitem" aria-label="Trang chủ">Home</a></li>
+                <li role="none"><a href="/" class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" role="menuitem" aria-label="Dashboard">Dashboard</a></li>
+                <li role="none"><a href="/transactions" class="nav-link {% if request.endpoint == 'transactions' %}active{% endif %}" role="menuitem" aria-label="Giao dịch">Transactions</a></li>
+                <li role="none"><a href="/mining" class="nav-link {% if request.endpoint == 'mining' %}active{% endif %}" role="menuitem" aria-label="Khai thác">Mining</a></li>
+                <li role="none"><a href="/network" class="nav-link {% if request.endpoint == 'network' %}active{% endif %}" role="menuitem" aria-label="Mạng">Network</a></li>
+                <li role="none"><a href="/simulation" class="nav-link {% if request.endpoint == 'simulation' %}active{% endif %}" role="menuitem" aria-label="Giả lập">Simulation</a></li>
             </ul>
         </div>
     </nav>
     
     <!-- Main Content -->
-    <main class="container">
+    <main class="container" role="main">
         {% block content %}{% endblock %}
     </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <span class="footer-copyright">&copy; 2025 <b>Zero Latency Team</b> &mdash; Bản quyền thuộc về Zero Latency Team.</span>
+        </div>
+    </footer>
     
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>

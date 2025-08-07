@@ -42,6 +42,79 @@ def simulation():
     """Simulation page"""
     return render_template('simulation.html')
 
+@app.route('/home')
+def home():
+    """Home page - BlockyHomework introduction"""
+    return render_template('home.html')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    """Generate sitemap.xml for SEO"""
+    from flask import make_response
+    from datetime import datetime
+    
+    sitemap_xml = f'''<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{request.url_root}home</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>{request.url_root}</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>{request.url_root}transactions</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{request.url_root}mining</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{request.url_root}network</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>{request.url_root}simulation</loc>
+        <lastmod>{datetime.now().strftime('%Y-%m-%d')}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+</urlset>'''
+    
+    response = make_response(sitemap_xml)
+    response.headers["Content-Type"] = "application/xml"
+    return response
+
+@app.route('/robots.txt')
+def robots():
+    """Generate robots.txt for SEO"""
+    from flask import make_response
+    
+    robots_txt = f'''User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {request.url_root}sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1'''
+    
+    response = make_response(robots_txt)
+    response.headers["Content-Type"] = "text/plain"
+    return response
+
 # API Routes
 @app.route('/api/blockchain/status')
 def get_blockchain_status():

@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% block title %}BlockyHomework - Hệ thống Blockchain Miniature | PoW, P2P, 51% Attack Simulation{% endblock %}
+
+{% block head %}
+<!-- SEO Meta Tags -->
+<meta name="description" content="BlockyHomework - Hệ thống blockchain thu nhỏ với PoW, mạng P2P, giả lập tấn công 51%. Học blockchain thực tế với ZTL Coin, ECDSA, Nakamoto Consensus.">
+<meta name="keywords" content="blockchain, proof of work, P2P network, 51% attack, cryptocurrency, ZTL Coin, ECDSA, Nakamoto consensus, Python blockchain, MVVM architecture">
+<meta name="author" content="BlockyHomework Team">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Vietnamese">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:title" content="BlockyHomework - Hệ thống Blockchain Miniature">
+<meta property="og:description" content="Khám phá blockchain thực tế với PoW, P2P, giả lập tấn công 51%. Học công nghệ blockchain qua ZTL Coin.">
+<meta property="og:image" content="{{ url_for('static', filename='images/blockyhomework-og.png', _external=True) }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ request.url }}">
+<meta property="twitter:title" content="BlockyHomework - Blockchain Miniature System">
+<meta property="twitter:description" content="Học blockchain thực tế với PoW, P2P, 51% attack simulation. ZTL Coin, ECDSA, Nakamoto Consensus.">
+<meta property="twitter:image" content="{{ url_for('static', filename='images/blockyhomework-twitter.png', _external=True) }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ request.url }}">
+
+<!-- Structured Data / Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BlockyHomework",
+  "description": "Hệ thống blockchain thu nhỏ với Proof-of-Work, mạng P2P, giả lập tấn công 51%",
+  "url": "{{ request.url_root }}",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Web Browser",
+  "programmingLanguage": "Python",
+  "author": {
+    "@type": "Organization",
+    "name": "BlockyHomework Team"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Proof-of-Work Consensus",
+    "P2P Network",
+    "51% Attack Simulation", 
+    "ZTL Coin Cryptocurrency",
+    "ECDSA Digital Signatures",
+    "Nakamoto Consensus"
+  ]
+}
+</script>
+
+<!-- Additional SEO -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{% endblock %}
+
+{% block content %}
+<!-- 3D Hero Section -->
+<section class="hero-3d">
+  <div class="hero-background">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+  </div>
+  
+  <div class="hero-content-3d">
+    <div class="hero-left">
+      <div class="logo-3d">
+        <div class="logo-inner">🔗</div>
+        <div class="logo-glow"></div>
+      </div>
+      
+      <h1 class="title-3d">
+        <span class="title-gradient">BlockyHomework</span>
+        <div class="title-shadow"></div>
+      </h1>
+      
+      <p class="slogan-3d">Miniature Blockchain. Real Learning. Infinite Possibilities.</p>
+      
+      <p class="description-3d">
+        BlockyHomework là hệ thống blockchain thu nhỏ, hiện đại, mã nguồn mở, giúp bạn khám phá công nghệ blockchain, đồng thuận PoW, mạng P2P, và mô phỏng tấn công 51% – tất cả trong một giao diện trực quan, đẹp mắt và dễ sử dụng.
+      </p>
+      
+      <div class="cta-buttons">
+        <a href="/" class="btn-3d btn-primary-3d">
+          <span class="btn-text">Khám phá ngay</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="/transactions" class="btn-3d btn-secondary-3d">
+          <span class="btn-text">Giao dịch ZTL Coin</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="hero-right">
+      <div class="blockchain-3d">
+        <div class="block block-1">
+          <div class="block-content">
+            <div class="block-icon">⚡</div>
+            <div class="block-text">Genesis</div>
+          </div>
+          <div class="block-shadow"></div>
+        </div>
+        <div class="block block-2">
+          <div class="block-content">
+            <div class="block-icon">🔒</div>
+            <div class="block-text">Block #1</div>
+          </div>
+          <div class="block-shadow"></div>
+        </div>
+        <div class="block block-3">
+          <div class="block-content">
+            <div class="block-icon">🌐</div>
+            <div class="block-text">Block #2</div>
+          </div>
+          <div class="block-shadow"></div>
+        </div>
+        <div class="block block-4">
+          <div class="block-content">
+            <div class="block-icon">🧪</div>
+            <div class="block-text">Block #3</div>
+          </div>
+          <div class="block-shadow"></div>
+        </div>
+        
+        <div class="chain-links">
+          <div class="chain-link link-1"></div>
+          <div class="chain-link link-2"></div>
+          <div class="chain-link link-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D Features Section -->
+<section class="features-3d">
+  <div class="container">
+    <h2 class="section-title-3d">
+      <span class="title-text">Tính năng nổi bật</span>
+      <div class="title-underline"></div>
+    </h2>
+    
+    <div class="features-grid-3d">
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">⚡</div>
+          <h3>Blockchain PoW thực chiến</h3>
+          <p>Thuật toán Proof-of-Work, mining, difficulty, block reward, xác thực chuỗi – tất cả đều có thật! Học cách blockchain hoạt động thông qua thực hành.</p>
+          <a href="/mining" class="feature-link-3d">
+            <span>Tìm hiểu Mining</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">🔒</div>
+          <h3>Bảo mật & Chữ ký số</h3>
+          <p>Giao dịch ZTL Coin với ECDSA, ví cá nhân, xác thực chữ ký, bảo vệ tài sản số. Hiểu rõ cơ chế bảo mật blockchain.</p>
+          <a href="/transactions" class="feature-link-3d">
+            <span>Tạo giao dịch</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">🌐</div>
+          <h3>Mạng P2P & Đồng bộ hóa</h3>
+          <p>Kết nối nhiều node, truyền bá block/giao dịch, đồng thuận Nakamoto, mô phỏng mạng thực tế. Trải nghiệm mạng phân tán.</p>
+          <a href="/network" class="feature-link-3d">
+            <span>Xem mạng P2P</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">🧪</div>
+          <h3>Giả lập tấn công 51%</h3>
+          <p>Trực quan hóa các kịch bản tấn công, kiểm tra sức mạnh bảo mật của blockchain. Hiểu rõ các rủi ro và cách phòng chống.</p>
+          <a href="/simulation" class="feature-link-3d">
+            <span>Chạy giả lập</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">🎨</div>
+          <h3>Giao diện hiện đại</h3>
+          <p>Thiết kế UI/UX đẹp, responsive, dễ dùng, tối ưu cho cả desktop và mobile. Trải nghiệm người dùng tuyệt vời.</p>
+          <a href="/" class="feature-link-3d">
+            <span>Khám phá UI</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="feature-card-3d">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <div class="feature-icon-3d">🛠️</div>
+          <h3>Mã nguồn mở, dễ mở rộng</h3>
+          <p>Tuân thủ MVVM, code Python rõ ràng, dễ học, dễ phát triển thêm tính năng mới. Học lập trình blockchain thực tế.</p>
+          <a href="https://github.com/your-repo/blockyhomework" class="feature-link-3d">
+            <span>Xem mã nguồn</span>
+            <div class="link-arrow">→</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3D SEO Content -->
+<section class="seo-content-3d">
+  <div class="container">
+    <div class="content-card-3d">
+      <h2>BlockyHomework - Nền tảng học blockchain hàng đầu</h2>
+      <p>BlockyHomework cung cấp môi trường học tập blockchain thực tế với các tính năng:</p>
+      <div class="features-list-3d">
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>Proof-of-Work (PoW):</strong> Thuật toán đồng thuận blockchain phổ biến nhất
+          </div>
+        </div>
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>ZTL Coin:</strong> Cryptocurrency nội bộ với giao dịch thực tế
+          </div>
+        </div>
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>ECDSA:</strong> Chữ ký số bảo mật cho giao dịch
+          </div>
+        </div>
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>P2P Network:</strong> Mạng ngang hàng phân tán
+          </div>
+        </div>
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>51% Attack Simulation:</strong> Mô phỏng tấn công blockchain
+          </div>
+        </div>
+        <div class="feature-item-3d">
+          <div class="feature-bullet"></div>
+          <div class="feature-text">
+            <strong>MVVM Architecture:</strong> Kiến trúc phần mềm hiện đại
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// 3D Animation Effects
+document.addEventListener('DOMContentLoaded', function() {
+  // Floating shapes animation
+  const shapes = document.querySelectorAll('.shape');
+  shapes.forEach((shape, index) => {
+    shape.style.animationDelay = `${index * 0.5}s`;
+  });
+  
+  // 3D Block animation
+  const blocks = document.querySelectorAll('.block');
+  blocks.forEach((block, index) => {
+    block.style.animationDelay = `${index * 0.3}s`;
+  });
+  
+  // Parallax effect for hero section
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.hero-background');
+    const speed = scrolled * 0.5;
+    parallax.style.transform = `translateY(${speed}px)`;
+  });
+  
+  // 3D Card hover effects
+  const cards = document.querySelectorAll('.feature-card-3d');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-10px) rotateX(5deg)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) rotateX(0)';
+    });
+  });
+  
+  // Button glow effects
+  const buttons = document.querySelectorAll('.btn-3d');
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.querySelector('.btn-glow').style.opacity = '1';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.querySelector('.btn-glow').style.opacity = '0';
+    });
+  });
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+{% endblock %}
