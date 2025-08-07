@@ -116,7 +116,7 @@
 
 ## Authors & Contributors
 
-**Zero Latency Team From UTH University of Transport**  
+**Zero Latency Team From University of Transport**  
 - Nguyễn Trường Phục  
 - Nguyễn Phạm Thiên Phước  
 - Nguyễn Đức Lượng  
